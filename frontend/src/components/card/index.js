@@ -10,6 +10,8 @@ import {
   Button,
 } from "reactstrap";
 
+import NotFoundImage from '../../assets/image/not-found.png'
+
 const Index = ({ data, onRemove = () => {} }) => {
   return (
     <Card className="mb-3">
@@ -21,6 +23,10 @@ const Index = ({ data, onRemove = () => {} }) => {
               height="98"
               alt="img"
               src={data.urlImage}
+              onError={(image) => {
+                image.target.src = NotFoundImage
+                return true
+              }}
             />
           </Col>
           <Col md="8">
