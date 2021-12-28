@@ -10,7 +10,7 @@
 - clone repositories ```git clone https://github.com/akbarramadhannnn/movie-react-nodejs-expressjs.git```
 - write on your cmd ```cd backend```
 - run ```npm install```
-- run ```npm start:dev```
+- run ```npm run start:dev```
 - server running on ```http://localhost:2021```
 
 ### - Host and Port
