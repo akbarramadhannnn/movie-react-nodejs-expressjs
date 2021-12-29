@@ -13,8 +13,9 @@
 - run ```npm run start:dev```
 - server running on ```http://localhost:2021```
 
-### - Host and Port
+### - Host or Port
 - ```http://localhost:2021``` (localhost)
+- ```http://widyawicara.akbarramadhan.com``` (live)
 
 ### - Endpoint
 | Description         | Method                         | Endpoint          |
@@ -144,3 +145,7 @@ Sample Response
 - run ```npm install```
 - run ```npm start```
 - open ```http://localhost:3000``` to view it in your browser.
+
+### - Host or Port
+- ```http://localhost:3000``` (localhost)
+- ```http://widyawicara.akbarramadhan.com``` (live)
