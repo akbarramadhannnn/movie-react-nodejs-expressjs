@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, Fragment } from "react";
 import { Link } from "react-router-dom";
 import {
-  Row,
   Col,
   Input,
   Spinner,
@@ -81,25 +80,18 @@ const Index = () => {
 
   return (
     <Fragment>
+      <Col md="12" className="mb-4">
+        <Link to="/add-movie" className="btn btn-primary">
+          Add Movie
+        </Link>
+      </Col>
+
       <Col md="12">
-        <Row>
-          <Col md="10">
-            <Input
-              value={search}
-              onChange={handleChangeSearch}
-              placeholder="Search by movie name"
-            />
-          </Col>
-          <Col md="2">
-            <Link
-              to="/add-movie"
-              className="btn btn-primary"
-              style={{ width: "100%" }}
-            >
-              Add Movie
-            </Link>
-          </Col>
-        </Row>
+        <Input
+          value={search}
+          onChange={handleChangeSearch}
+          placeholder="Search by movie name"
+        />
       </Col>
 
       {message && (
