@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { Fragment, memo, useCallback, useEffect, useState } from "react";
 import {
   Row,
   Col,
@@ -6,54 +6,68 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardText,
   Button,
 } from "reactstrap";
 
-import NotFoundImage from "../../assets/image/not-found.png";
-
 const Index = ({ data, onRemove = () => {} }) => {
+  const [params, setParams] = useState("");
+
+  useEffect(() => {
+    var url = new URL(data.trailer);
+    var videoId = url.searchParams.get("v");
+    setParams(videoId);
+  }, [data]);
+
+  const handleClickWatch = useCallback((link) => {
+    window.open(link);
+  }, []);
+
   return (
     <Card className="mb-3">
       <CardBody>
-        <Row className="d-flex">
-          <div className="col-9">
-            <Row>
-              <div className="col-md-2 d-flex justify-content-center mb-4">
-                <img
-                  width="67"
-                  height="98"
-                  alt="img"
-                  src={data.urlImage}
-                  onError={(image) => {
-                    image.target.src = NotFoundImage;
-                    return true;
-                  }}
-                />
-              </div>
-              <div className="col-md-10">
-                <Col className="d-flex">
-                  <CardTitle tag="h5" style={{ marginRight: 5 }}>
-                    {data.name}
-                  </CardTitle>
-                  <p className="text-muted">({data.years})</p>
-                </Col>
-                <CardSubtitle
-                  style={{ fontSize: 14 }}
-                  className="mb-2 text-muted"
-                  tag="h6"
-                >
-                  Duration: {data.duration} minutes
-                </CardSubtitle>
-                <CardText>{data.description}</CardText>
-              </div>
-            </Row>
-          </div>
-          <div className="col" style={{ textAlign: "right" }}>
+        <Row>
+          <Col md="12" style={{ textAlign: "right", marginBottom: "20px" }}>
             <Button color="danger" onClick={() => onRemove(data.id)}>
               X
             </Button>
-          </div>
+          </Col>
+          <Col md="12">
+            <CardTitle tag="h4" style={{ marginRight: 5 }}>
+              {data.title}
+            </CardTitle>
+            <CardSubtitle
+              style={{ fontSize: 14 }}
+              className="mb-2 text-muted"
+              tag="h6"
+            >
+              <i className="bi bi-star text-warning"></i> {data.rating} |{" "}
+              {data.quality} | {data.duration} |{" "}
+              {data.genre.map((g, i) => (
+                <Fragment key={i}>
+                  {g}
+                  {i === data.genre.length - 1 ? "" : ", "}
+                </Fragment>
+              ))}
+            </CardSubtitle>
+            <Col md="12 mt-4">
+              <h5>Trailer : </h5>
+              <iframe
+                title={data.title}
+                width="100%"
+                height="400"
+                src={`https://www.youtube.com/embed/${params}`}
+              ></iframe>
+            </Col>
+          </Col>
+
+          <Col md="12" style={{ textAlign: "right", marginTop: "20px" }}>
+            <Button
+              color="primary"
+              onClick={() => handleClickWatch(data.watch)}
+            >
+              Watch Movie
+            </Button>
+          </Col>
         </Row>
       </CardBody>
     </Card>

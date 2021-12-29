@@ -1,5 +1,4 @@
 const fs = require("fs");
-const DataDummy = require("../data/datadummy.json");
 const uuid = require("uuid");
 const Response = require("../helpers/response");
 
@@ -9,60 +8,60 @@ exports.getAllMovie = (req, res) => {
   const parseData = JSON.parse(readData);
   const regex = new RegExp(search.toLowerCase(), "i");
   const filterData = parseData.data.filter((d) =>
-    d.name.toLowerCase().match(regex)
+    d.title.toLowerCase().match(regex)
   );
   return res.json(Response(true, 200, `Get Movie Success`, filterData));
 };
 
 exports.addMovie = (req, res) => {
-  const { name, description, duration, years, urlImage } = req.body;
-  if (!name) {
+  const { title, genre, rating, duration, quality, trailer, watch } = req.body;
+  if (!title) {
     return res.json(
-      Response(false, 400, `name is required`, { field: "name" })
+      Response(false, 400, `Title is required`, { field: "title" })
     );
-  } else if (!description) {
+  } else if (!genre.length > 0) {
     return res.json(
-      Response(false, 400, `Description is required`, { field: "description" })
+      Response(false, 400, `Genre is required`, { field: "genre" })
     );
-  } else if (!years) {
+  } else if (!rating) {
     return res.json(
-      Response(false, 400, `Years is required`, { field: "years" })
+      Response(false, 400, `Rating is required`, { field: "rating" })
     );
   } else if (!duration) {
     return res.json(
       Response(false, 400, `Duration is required`, { field: "duration" })
     );
-  } else if (!urlImage) {
+  } else if (!quality) {
     return res.json(
-      Response(false, 400, `Url Image is required`, { field: "urlImage" })
+      Response(false, 400, `Quality is required`, { field: "quality" })
+    );
+  } else if (!trailer) {
+    return res.json(
+      Response(false, 400, `Trailer is required`, { field: "trailer" })
+    );
+  } else if (!watch) {
+    return res.json(
+      Response(false, 400, `Watch is required`, { field: "watch" })
     );
   } else {
-    if (isNaN(years)) {
-      return res.json(
-        Response(false, 400, `Years is number`, { field: "years" })
-      );
-    } else if (isNaN(duration)) {
-      return res.json(
-        Response(false, 400, `Duration is number`, { field: "duration" })
-      );
-    } else {
-      const payload = {
-        id: uuid.v4(),
-        name: name,
-        description: description,
-        years: Number(years),
-        duration: Number(duration),
-        urlImage: urlImage,
-      };
-      const readData = fs.readFileSync("./data/datadummy.json");
-      const parseData = JSON.parse(readData);
-      parseData.data.push(payload);
-      const newData = JSON.stringify(parseData);
-      fs.writeFile("./data/datadummy.json", newData, (err) => {
-        if (err) throw err;
-        return res.json(Response(true, 201, `Added Movie Success`, {}));
-      });
-    }
+    const payload = {
+      id: uuid.v4(),
+      title,
+      genre,
+      rating,
+      duration,
+      quality,
+      trailer,
+      watch,
+    };
+    const readData = fs.readFileSync("./data/datadummy.json");
+    const parseData = JSON.parse(readData);
+    parseData.data.push(payload);
+    const newData = JSON.stringify(parseData);
+    fs.writeFile("./data/datadummy.json", newData, (err) => {
+      if (err) throw err;
+      return res.json(Response(true, 201, `Added Movie Success`, {}));
+    });
   }
 };
 
