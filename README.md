@@ -43,20 +43,33 @@ Sample Response:
     "message": "Get Movie Success",
     "result": [
         {
-            "id": "941dd2e8-63bc-418c-9b3a-407c40274c06",
-            "name": "Tenet",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-            "years": 2020,
-            "duration": 150,
-            "urlImage": "https://m.media-amazon.com/images/M/MV5BYzg0NGM2NjAtNmIxOC00MDJmLTg5ZmYtYzM0MTE4NWE2NzlhXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_UX67_CR0,0,67,98_AL_.jpg"
+            "id": "2176d0e0-d0b1-4e63-a46e-94718c683554",
+            "title": "After We Fell (2021)",
+            "genre": [
+                "Drama",
+                "Movie",
+                "Romance",
+                "France"
+            ],
+            "rating": "7.2",
+            "duration": "99 min",
+            "quality": "HD",
+            "trailer": "https://www.youtube.com/watch?v=NYdNN6C9hfI",
+            "watch": "https://103.136.42.202/after-we-fell-2021/"
         },
         {
-            "id": "212c26d3-7fdf-4ddf-ad47-3e177425eaeb",
-            "name": "Holidate",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-            "years": 2020,
-            "duration": 111,
-            "urlImage": "https://m.media-amazon.com/images/M/MV5BYWVmYTFjODItOTY2Ni00NDhhLTk1ZDYtMzBmOGFhZTMyY2Q0XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_UX67_CR0,0,67,98_AL_.jpg"
+            "id": "cf4a0fae-4a51-410a-95f0-618b118118c5",
+            "title": "The Bewailing (The Nest) (2021)",
+            "genre": [
+                "Horror",
+                "Movie",
+                "Thriller"
+            ],
+            "rating": "6",
+            "duration": "100 min",
+            "quality": "HD",
+            "trailer": "https://www.youtube.com/watch?v=92kRK9WLNtg",
+            "watch": "https://103.136.42.202/the-bewailing-the-nest-2021/"
         }
         ...
     ]
@@ -67,7 +80,7 @@ Sample Response:
 
 URL
 ```
-GET http://localhost:2021/api/movie?search=holidate
+GET http://localhost:2021/api/movie?search=aft
 ```
 
 Sample Response
@@ -78,12 +91,19 @@ Sample Response
     "message": "Get Movie Success",
     "result": [
         {
-            "id": "212c26d3-7fdf-4ddf-ad47-3e177425eaeb",
-            "name": "Holidate",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-            "years": 2020,
-            "duration": 111,
-            "urlImage": "https://m.media-amazon.com/images/M/MV5BYWVmYTFjODItOTY2Ni00NDhhLTk1ZDYtMzBmOGFhZTMyY2Q0XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_UX67_CR0,0,67,98_AL_.jpg"
+            "id": "2176d0e0-d0b1-4e63-a46e-94718c683554",
+            "title": "After We Fell (2021)",
+            "genre": [
+                "Drama",
+                "Movie",
+                "Romance",
+                "France"
+            ],
+            "rating": "7.2",
+            "duration": "99 min",
+            "quality": "HD",
+            "trailer": "https://www.youtube.com/watch?v=NYdNN6C9hfI",
+            "watch": "https://103.136.42.202/after-we-fell-2021/"
         }
         ...
     ]
@@ -100,11 +120,16 @@ POST http://localhost:2021/api/movie
 Request Body ```application/json```
 ```
 {
-    "name": "Fatman",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-    "years": 2020,
-    "duration": 110,
-    "urlImage": "https://m.media-amazon.com/images/M/MV5BZjk1NDc4OTEtY2M3OS00M2E3LTk4YTgtYjczMzI1OWQ1ODVlXkEyXkFqcGdeQXVyNzA0OTM3NQ@@._V1_UY98_CR0,0,67,98_AL_.jpg"
+    "title": "Asakusa Kid (2021)",
+    "genre": [
+        "Drama",
+        "Movie"
+    ],
+    "rating": " 7",
+    "duration": "123 min",
+    "quality": "HD",
+    "trailer": "https://www.youtube.com/watch?v=KhzBFfkvn44",
+    "watch": "https://103.136.42.202/asakusa-kid-2021/"
 }
 ```
 
@@ -124,7 +149,7 @@ Sample Response
 
 URL
 ```
-DELETE http://localhost:2021/api/movie/212c26d3-7fdf-4ddf-ad47-3e177425eaeb
+DELETE http://localhost:2021/api/movie/2176d0e0-d0b1-4e63-a46e-94718c683554
 ```
 
 Sample Response
